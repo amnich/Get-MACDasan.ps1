@@ -8,7 +8,8 @@ function Get-MACDasan {
         [string]$Community = "public",
         [string]$Snmpwalk = "C:\usr\bin\snmpwalk.exe" #path to snmpwalk.exe	
     )	
-    $cmd = "$snmpwalk -v1 -c$community -Ox $Ip 1.3.6.1.4.1.6296.101.3.13.1.1.3"
+    $Oid = '1.3.6.1.4.1.6296.101.3.13.1.1.3'
+    $cmd = "$snmpwalk -v1 -c$community -Ox $Ip $Oid"
     Write-Verbose $cmd
     $snmpResults = Invoke-Expression $cmd  #execute snmpwalk command
     Write-Debug "$($snmpResults | Out-String)"
